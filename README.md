@@ -1,11 +1,11 @@
 # Roadmap: Sistema de Biblioteca Pessoal
 
-## 📋 Visão Geral do Projeto
+## Visão Geral do Projeto
 Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstimos, devoluções e relatórios usando Laravel com Blade e Tailwind CSS.
 
 ---
 
-## 🎯 *Fase 1: Estrutura Base (Semana 1)*
+## *Fase 1: Estrutura Base (Semana 1)*
 
 ### Setup Inicial
 - [ ] Criar novo projeto Laravel
@@ -32,7 +32,7 @@ Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstim
 
 ---
 
-## 🚀 *Fase 2: CRUD de Livros (Semana 2)*
+## *Fase 2: CRUD de Livros (Semana 2)*
 
 ### Controllers e Routes
 - [ ] *BookController* com métodos: index, create, store, show, edit, update, destroy
@@ -55,7 +55,7 @@ Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstim
 
 ---
 
-## 👥 *Fase 3: CRUD de Pessoas (Semana 3)*
+## *Fase 3: CRUD de Pessoas (Semana 3)*
 
 ### Controllers e Routes
 - [ ] *PersonController* com métodos CRUD completos
@@ -75,7 +75,7 @@ Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstim
 
 ---
 
-## 📚 *Fase 4: Sistema de Empréstimos (Semana 4)*
+## *Fase 4: Sistema de Empréstimos (Semana 4)*
 
 ### Controllers e Routes  
 - [ ] *LoanController* com métodos específicos
@@ -100,21 +100,7 @@ Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstim
 
 ---
 
-## 📊 *Fase 5: Sistema de Reservas (Semana 5)*
-
-### Nova Migration e Model
-- [ ] *Model/Migration: Reservation*
-  - id, book_id, person_id, data_reserva, status, data_expiracao
-
-### Funcionalidades
-- [ ] *Reservar livro indisponível* - Sistema de fila
-- [ ] *Listar reservas* - Por pessoa e por livro
-- [ ] *Cancelar reserva* - Pela pessoa
-- [ ] *Notificar disponibilidade* - Quando livro for devolvido
-
----
-
-## 📈 *Fase 6: Relatórios e Dashboard (Semana 6)*
+## *Fase 5: Relatórios e Dashboard (Semana 6)*
 
 ### Dashboard Principal
 - [ ] *Cards com estatísticas* - Total de livros, empréstimos ativos, atrasos
@@ -130,23 +116,7 @@ Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstim
 
 ---
 
-## 🎨 *Fase 7: Melhorias e Polish (Semana 7)*
-
-### UX/UI
-- [ ] *Alertas e notificações* - Success/error messages
-- [ ] *Confirmações com modals* - Para exclusões
-- [ ] *Loading states* - Feedback visual
-- [ ] *Responsividade* - Mobile-first
-
-### Funcionalidades Extras
-- [ ] *Sistema de multas* - Por atraso na devolução
-- [ ] *QR Code* - Para cada livro (geração automática)
-- [ ] *Importar livros* - Via CSV
-- [ ] *Backup automático* - Exportar dados
-
----
-
-## 📋 *Checklist de Entrega*
+## *Checklist de Entrega*
 
 ### Funcionalidades Obrigatórias
 - [ ] ✅ CRUD completo de Livros
@@ -164,7 +134,3 @@ Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstim
 - [ ] ✅ Relacionamentos Eloquent
 - [ ] ✅ Form Requests (validação)
 - [ ] ✅ Seeders e Factories
-
----
-
-*💡 Dica:* Sugiro que ele faça commits frequentes e documente cada fase. Isso será ótimo para o portfólio!
