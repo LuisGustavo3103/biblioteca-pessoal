@@ -18,13 +18,13 @@ Sistema para gerenciar uma biblioteca pessoal com controle de livros, empréstim
   - id, titulo, autor, isbn, editora, ano_publicacao, genero, sinopse, capa (nullable), status, created_at, updated_at
 - [ ] *Model/Migration: Person* 
   - id, nome, email, telefone, endereco, created_at, updated_at
-- [ ] *Model/Migration: Loan*
+- [ ] *Model/Migration: Lend*
   - id, book_id, person_id, data_emprestimo, data_prevista_devolucao, data_devolucao (nullable), status, observacoes
 
 ### Relacionamentos nos Models
-- [ ] Book hasMany Loans
-- [ ] Person hasMany Loans  
-- [ ] Loan belongsTo Book e Person
+- [ ] Book hasMany Lend
+- [ ] Person hasMany Lend  
+- [ ] Lend belongsTo Book e Person
 
 ### Seeders Básicos
 - [ ] Criar seeder com 20-30 livros de exemplo
