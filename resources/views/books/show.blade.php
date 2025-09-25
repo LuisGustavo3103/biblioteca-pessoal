@@ -49,7 +49,8 @@
             </div>
             <div class="flex justify-end items-center space-x-2 col-span-12 pt-5">
                 <a href="{{ route('books.index') }}">
-                    <button class="bg-blue-500 p-1 rounded text-white cursor-pointer hover:bg-blue-700">Voltar</button>
+                    <button
+                        class="bg-blue-500 py-1 px-4 rounded text-white cursor-pointer hover:bg-blue-700">Voltar</button>
                 </a>
                 <a class="px-1" href="{{ route('books.edit', $book) }}">
                     <button type="submit"

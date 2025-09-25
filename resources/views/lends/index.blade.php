@@ -1,3 +1,6 @@
+@php
+    use App\Enums\LendStatusEnum;
+@endphp
 @extends('layout.app')
 @section('content')
     <div class="max-w-7xl mx-auto space-y-5 py-5">
@@ -35,13 +38,20 @@
                     <p>Cliente: {{ $lend->person->name }} </p>
                     <p>Data prevista: {{ $lend->expected_return_date->format('d/m/Y') }} </p>
                     <p>Status: {{ $lend->status->label() }} </p>
+                    @if ($lend->returne_date)
+                        <p>Data da devolução: {{ $lend->returne_date->format('d/m/Y') }}</p>
+                    @endif
 
-                    <div class="flex justify-end items-center">
-                        <a class="px-1" href="{{ route('lends.edit', $lend) }}">
-                            <button type="submit"
-                                class="bg-yellow-500 py-1 px-4 rounded text-white cursor-pointer hover:bg-yellow-700">Editar</button>
-                        </a>
-                    </div>
+                    @if ($lend->status == LendStatusEnum::IN_PROGRESS)
+                        <div class="flex justify-end items-center">
+                            <form action="{{ route('lends.update', $lend) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" onclick="return confirm('Deseja realmente excluir?')"
+                                    class="bg-amber-400 py-1 px-4 rounded text-white cursor-pointer hover:bg-green-700">Devolução</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             @empty
                 <p class="shadow col-span-3 text-center p-5">Nenhuma reserva encontrada</p>

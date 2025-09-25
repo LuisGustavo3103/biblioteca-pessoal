@@ -20,7 +20,8 @@ class Lend extends Model
 
     protected $casts = [
         'status' => LendStatusEnum::class,
-        'expected_return_date' => 'datetime'
+        'expected_return_date' => 'datetime',
+        'returne_date' => 'datetime'
     ];
 
     public function book(): BelongsTo

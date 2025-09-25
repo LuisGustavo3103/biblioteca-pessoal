@@ -17,7 +17,11 @@
                 <x-forms.input value="{{ $book->title }}" field="title" placeholder="Título" autofocus />
                 <x-forms.input value="{{ $book->author }}" field="author" placeholder="Autor" />
                 <x-forms.input value="{{ $book->publisher }}" field="publisher" placeholder="Editora" />
-                <x-forms.input value="{{ $book->sinopse }}" field="sinopse" placeholder="Sinopse" />
+                <label for="sinopse">Sinopse
+                    <textarea
+                        class="rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 mb-2 w-full"
+                        name="sinopse" id="sinopse" cols="30" rows="5">{{ $book->sinopse }}</textarea>
+                </label>
                 <label for="gender">Gênero
                     <select
                         class="rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 mb-2 w-full"

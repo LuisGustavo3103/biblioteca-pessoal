@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\BookStatusEnum;
 use App\Http\Requests\BookRequest;
 use App\Http\Requests\EditBookRequest;
 use App\Models\Book;
@@ -16,13 +17,17 @@ class BookController extends Controller
     {
         $searchTitle = $request->input('title');
         $searchGenero = $request->input('gender');
+        $searchStatus = $request->input('status');
 
         $books = Book::query()
             ->when($searchTitle, function ($query) use ($searchTitle) {
                 $query->where('title', 'like', '%' . $searchTitle . '%');
             })
             ->when($searchGenero, function ($query) use ($searchGenero) {
-                $query->where('gender', 'like', '%' . $searchGenero . '%');
+                $query->where('gender', $searchGenero);
+            })
+            ->when($searchStatus, function($query) use ($searchStatus) {
+                $query->where('status', $searchStatus);
             })
             ->orderByDesc('created_at')
             ->paginate(6);

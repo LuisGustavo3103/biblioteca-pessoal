@@ -4,9 +4,8 @@
         <div class="bg-gray-100 rounded p-2 shadow space-y-2">
             <h1 class="text-center text-3xl">Reservar</h1>
         </div>
-
         <div class="shadow p-5 w-full">
-            <form class="grid grid-cols-2 space-x-1.5" action="{{ route('lends.store') }}" method="POST">
+            <form class="grid grid-cols-2 gap-2" action="{{ route('lends.store') }}" method="POST">
                 @csrf
                 <label class="flex flex-col" for="book">Livro
                     <select
@@ -15,7 +14,7 @@
                         <option value="">Escolha o livro</option>
                         @foreach ($books as $book)
                             <option value="{{ $book->id }}"
-                                {{ request()->input('book_id') === $book->id ? 'selected' : '' }}>
+                                {{ (int) request()->get('livro') === $book->id ? 'selected' : '' }}>
                                 {{ $book->title }}
                             </option>
                         @endforeach
@@ -34,11 +33,16 @@
                         @endforeach
                     </select>
                 </label>
-                <x-forms.input type="date" field="expected_return_date" placeholder="Data Prevista do Retorno" />
-                <div class="col-span-2">
-                    <x-forms.input isRequired="{{ false }}" field="description" placeholder="Descrição" />
-                </div>
-                <div class="flex justify-end col-span-2">
+                <x-forms.input type="date" field="expected_return_date" placeholder="Data Prevista do Retorno"
+                    min="{{ date('Y-m-d') }}" lang="pt-BR" />
+                <x-forms.input isRequired="{{ false }}" field="description" placeholder="Descrição" />
+                <div class="flex justify-end space-x-1.5 col-span-2">
+                    <a href="{{ url()->previous() }}">
+                        <button class="bg-blue-500 py-1 px-4 rounded text-white cursor-pointer hover:bg-blue-700"
+                            type="button">
+                            Voltar
+                        </button>
+                    </a>
                     <button type="submit"
                         class="bg-green-500 py-1 px-4 rounded text-white cursor-pointer hover:bg-green-700">
                         Reservar

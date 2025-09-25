@@ -1,5 +1,7 @@
 @php
     use App\Enums\BookGenderEnum;
+    use App\Enums\BookStatusEnum;
+    use App\Enums\LendStatusEnum;
 @endphp
 
 @extends('layout.app')
@@ -10,7 +12,7 @@
             <h1 class="text-center text-3xl">Livros</h1>
         </div>
         <form class="shadow p-5 w-full flex justify-between" action="{{ route('books.index') }}">
-            <div>
+            <div class="space-x-1.5">
                 <input
                     class="rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300"
                     type="text" placeholder="Buscar Titulo: " name="title" value="{{ request()->input('title') }}">
@@ -21,6 +23,16 @@
                     @foreach (BookGenderEnum::cases() as $gender)
                         <option value="{{ $gender->value }}"
                             {{ request()->input('gender') === $gender->value ? 'selected' : '' }}>{{ $gender->label() }}
+                        </option>
+                    @endforeach
+                </select>
+                <select
+                    class="rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300"
+                    name="status" id="status">
+                    <option value="">Filtrar por Status</option>
+                    @foreach (BookStatusEnum::cases() as $status)
+                        <option value="{{ $status->value }}"
+                            {{ request()->input('status') === $status->value ? 'selected' : '' }}>{{ $status->label() }}
                         </option>
                     @endforeach
                 </select>
@@ -67,10 +79,16 @@
                             <button type="submit"
                                 class="bg-yellow-500 py-1 px-4 rounded text-white cursor-pointer hover:bg-yellow-700">Editar</button>
                         </a>
-                        <a href="{{ route('lends.create') }}">
-                            <button
-                                class="bg-green-500 p-1 rounded text-white cursor-pointer hover:bg-green-700">Reservar</button>
-                        </a>
+                        @if (BookStatusEnum::AVAILABLE->value === $book->status)
+                            <a href="{{ route('lends.create', ['livro' => $book]) }}">
+                                <button
+                                    class="bg-green-500 p-1 rounded text-white cursor-pointer hover:bg-green-700">Reservar</button>
+                            </a>
+                        @elseif (BookStatusEnum::NOT_AVAILABLE->value === $book->status)
+                            <button class="bg-orange-500 p-1 rounded text-white hover:bg-orange-700">Expirado</button>
+                        @elseif(BookStatusEnum::BORROWED->value === $book->status)
+                            <button class="bg-red-500 p-1 rounded text-white hover:bg-red-700">Reservado</button>
+                        @endif
                         <a href="{{ route('books.show', $book) }}">
                             <button class="bg-blue-500 p-1 rounded text-white cursor-pointer hover:bg-blue-700">Ver
                                 mais</button>

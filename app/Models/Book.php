@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\BookGenderEnum;
+use App\Enums\LendStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -37,7 +38,7 @@ class Book extends Model
 
     public function currentLend(): HasOne
     {
-        return $this->hasOne(Lend::class, 'book_id')->where('status', 'em_andamento');
+        return $this->hasOne(Lend::class, 'book_id')->where('status', LendStatusEnum::IN_PROGRESS->value);
     }
 
     public function currentLendTo(): HasOneThrough
@@ -49,6 +50,6 @@ class Book extends Model
             'id',
             'id',
             'person_id'
-        )->where('status', 'em_andamento');
+        )->where('status', LendStatusEnum::IN_PROGRESS->value);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRequest;
+use App\Models\Lend;
 use App\Models\Person;
 use Exception;
 use GuzzleHttp\Client;
@@ -63,7 +64,9 @@ class ClientController extends Controller
     }
 
     public function destroy(Person $client)
-    {
+    {   
+        Lend::query()->where('person_id', $client->id)->delete();
+
         $client->delete();
 
         return redirect()->route('clients.index');
